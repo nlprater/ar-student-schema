@@ -4,7 +4,10 @@ require 'Date'
 
 class Student < ActiveRecord::Base
 # implement your Student model here
-
+  validates :email, uniqueness: true, format: { with: /.{1,}@.{1,}[.].{2,}/ }
+  validates :age, :numericality => { :greater_than => 4 }
+  validates :phone, length: { minimum: 10 , tokenizer: lambda { |str| str.scan(/\d/) }}
+ 
   def name
     self.first_name + " " + self.last_name
   end

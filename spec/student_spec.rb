@@ -74,6 +74,7 @@ describe Student, "validations" do
 
   it "shouldn't accept toddlers" do
     @student.assign_attributes(:birthday => Date.today - 3.years)
+    #debugger
     @student.should_not be_valid
   end
 
