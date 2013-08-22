@@ -4,6 +4,9 @@ require 'Date'
 
 class Student < ActiveRecord::Base
 # implement your Student model here
+  has_many :groups, :foreign_key => :student_id
+  has_many :teachers, :through => :groups
+
   validates :email, uniqueness: true, format: { with: /.{1,}@.{1,}[.].{2,}/ }
   validates :age, :numericality => { :greater_than => 4 }
   validates :phone, length: { minimum: 10 , tokenizer: lambda { |str| str.scan(/\d/) }}
